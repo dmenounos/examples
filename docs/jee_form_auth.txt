@@ -1,0 +1,110 @@
+J2EE Form-based Authentication
+--------------------------------------------------------------------------------
+http://www.onjava.com/pub/a/onjava/2002/06/12/form.html
+================================================================================
+
+There are two major components of Web application security: authentication and 
+authorization. J2EE-based Web containers offer three types of authentication 
+mechanisms: basic, form-based, and mutual authentication. Most Web applications 
+use the form-based authentication mechanism, since it allows applications to 
+customize the authentication user interface. Web containers implement 
+authorization on Web resources of applications, using security roles defined in 
+the deployment descriptor of the Web application.
+
+There are three issues that software architects and software developers come 
+across using the form-based authentication mechanism:
+
+1. How the form-based authentication works with other security realms, such as 
+   database and LDAP (this is necessary because most organizations may already 
+   have authentication information in database or LDAP form).
+
+2. How to add or delete authorization roles declared in the deployment 
+   descriptor (web.xml) of the Web application.
+
+3. Web containers enforce authorization at Web resource level; however, an 
+   application needs to enforce authorization at its functionality level within 
+   a single Web resource.
+
+Despite the fact that there is plenty of documentation and many examples 
+available for form-based authentication, none of them clarifies these issues. 
+Hence, most applications have implemented security in their own way.
+
+
+Authentication
+================================================================================
+
+Form-based authentication lets developers customize the authentication user 
+interface. The login-config section of web.xml defines the type of 
+authentication mechanism, and the URIs to login and error pages.
+
+<login-config>
+  <auth-method>FORM</auth-method>
+  <form-login-config>
+    <form-login-page>/login.jsp</form-login-page>
+    <form-error-page>/fail_login.html</form-error-page>
+  </form-login-config>
+</login-config>
+
+The login form must contain fields for entering username and password. These 
+fields must be named j_username and j_password, respectively. This form should 
+post these values to j_security_check logical name.
+
+Here is an example showing how the form should be coded into an HTML page:
+
+<form method="POST" action="j_security_check">
+  <input type="text" name="j_username" />
+  <input type="password" name="j_password" />
+</form>
+
+This form of authentication, which uses base64 encoding, can expose username 
+and password unless all connections are over SSL. 
+
+Web containers perform the following steps to validate a user:
+
+1. Determines the configured security realm for the container.
+
+2. Uses that security realm for authentication.
+
+Since database and LDAP provide greater flexibility in maintaining information, 
+most organizations may want this persistence for security authentication and 
+authorization information. 
+
+
+Authorization
+================================================================================
+
+Web containers enforce authorization at a page level. However, commercial 
+applications may also want to enforce authorization on functionalities within 
+a single page. This may require that some additional new application-specific 
+security roles be defined in the application. To control access to 
+functionalities, the application needs to understand the notion of privileges 
+for a role. The Web container specification does not address privileges.
+
+Since authorization roles are dynamic, developers often get confused as to 
+whether these security roles need to be added to the deployment descriptor. 
+Web containers just need one role defined in the deployment descriptor for the 
+application to take advantage of security support. So, the application can 
+define one high-level role and assign all users to this role. This allows all 
+users in this role to have access to the Web resources.
+
+In addition, the application can define additional roles to enforce 
+authorization on low-level functionalities within a single Web resource. These 
+low-level security roles do not need to be in the deployment descriptor, since 
+the application has been configured with a high-level security role that 
+contains all of the users in the application. This allows Web applications to 
+take advantage of container authorization support, and to implement 
+application-specific authorization.
+
+For example, you can define an administrator role for all of the users at a 
+high level in the deployment descriptor to protect administration Web 
+resources. This allows all of the users in the administrator role to access 
+the administration pages. To control other functionalities within the 
+administration pages, you can create new roles, such as sysadmin or appadmin, 
+within the application.
+
+The application can extend these security roles to have privileges. Then, the 
+application can use these privileges to control access to its functionalities.
+
+Despite the fact that application-specific security roles are not defined in 
+the deployment descriptors, these roles can still be used in the isUserInRole 
+method to determine whether the user in these security roles.

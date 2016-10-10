@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:c="http://java.sun.com/jsp/jstl/core"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:cc="http://java.sun.com/jsf/composite"
+              xmlns:tl="http://java.sun.com/jsf/composite/tool">
+
+	<cc:interface>
+		<cc:attribute name="bean" required="true" />
+		<cc:attribute name="onCustomerSelect" method-signature="void action()" required="true" />
+		<cc:attribute name="visible" required="true" />
+		<cc:attribute name="title"   default="#{msg.create}" />
+		<cc:attribute name="render"  default="" />
+	</cc:interface>
+
+	<cc:implementation>
+		<div id="#{cc.clientId}">
+
+			<h:panelGroup rendered="#{cc.attrs.visible}">
+
+				<div class="modal fade">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+
+							<div class="modal-header">
+								<h3>#{cc.attrs.title}</h3>
+							</div>
+
+							<div class="modal-body">
+								<tl:customerLookupComponent
+									bean="#{cc.attrs.bean}"
+									render=":#{cc.clientId}:submit" />
+							</div>
+
+							<div class="modal-footer">
+								<h:commandButton id="submit" styleClass="btn btn-default"
+									disabled="#{cc.attrs.bean.selectedCustomer eq null}"
+									action="#{cc.attrs.onCustomerSelect}"
+									value="#{msg.submit}">
+									<f:ajax render="#{cc.attrs.render}"
+										onevent="if (data.status === 'success') { $('\##{cc.clientId} .modal').modal('hide'); }" />
+								</h:commandButton>
+								<h:commandButton id="cancel" styleClass="btn btn-default"
+									value="#{msg.cancel}" immediate="true">
+									<f:ajax render="#{cc.attrs.render}"
+										onevent="if (data.status === 'success') { $('\##{cc.clientId} .modal').modal('hide'); }" />
+								</h:commandButton>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</h:panelGroup>
+
+		</div>
+	</cc:implementation>
+
+</ui:component>

@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<server xmlns="urn:jboss:domain:1.6">
+
+    <profile>
+        <subsystem xmlns="urn:jboss:domain:security:1.2">
+            <security-domains>
+
+                <security-domain name="test" cache-type="default">
+                    <authentication>
+                        <login-module code="test.view.auth.jee.UserServiceJBossModule" flag="required"/>
+                    </authentication>
+                </security-domain>
+
+            </security-domains>
+        </subsystem>
+    </profile>
+
+</server>

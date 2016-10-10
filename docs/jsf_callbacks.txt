@@ -1,0 +1,28 @@
+1. Εκτελείται ο property action listener, θέτωντας τιμή σε κάποιο property.
+2. Εκτελείται ο action listener.
+3. Ανανεώνονται οι τα στοιχεία που αναφέρονται στο ajax render.
+
+<h:commandLink action="#{bean.foo}">
+	<f:setPropertyActionListener target="#{bean.bar}" value="#{...}" />
+	<f:ajax render="..." />
+	...
+</h:commandLink>
+
+
+1. Τίθεται τιμή σε attribute του event.
+2. Εκτελείται ο ajax action listener με όρισμα AjaxBehaviorEvent event 
+   από οπου πέρνουμε την τιμή: event.getComponent().getAttributes().get("foo");
+3. Ανανεώνονται οι τα στοιχεία που αναφέρονται στο ajax render.
+
+<h:selectBooleanCheckbox value="#{var.selected}">
+	<f:attribute name="foo" value="#{var}" />
+	<f:ajax listener="#{bean.onFooSelectionChange}" render="..." />
+</h:selectBooleanCheckbox>
+
+
+1. Εκτελείται ο ajax action listener με όρισμα απευθείας την τιμή.
+2. Ανανεώνονται οι τα στοιχεία που αναφέρονται στο ajax render.
+
+<h:selectBooleanCheckbox value="#{var.selected}">
+	<f:ajax listener="#{bean.onFooSelectionChange(var)}" render="..." />		
+</h:selectBooleanCheckbox>

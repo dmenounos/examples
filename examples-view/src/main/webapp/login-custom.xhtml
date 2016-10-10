@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                template="/WEB-INF/templates/main.xhtml">
+
+	<ui:define name="content">
+
+		<f:metadata>
+			<f:event type="preRenderView" listener="#{loginCustomController.preRenderView}" />
+		</f:metadata>
+
+		<div class="container">
+	
+			<div class="section">
+				<div class="section-header">
+					<h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login Page</h3>
+				</div>
+				<div class="section-content">
+
+					<h:panelGroup layout="block"
+						styleClass="alert alert-danger"
+						rendered="#{not empty facesContext.messageList}">
+						<button type="button" class="close" data-dismiss="alert">&#215;</button>
+						<h:messages />
+					</h:panelGroup>
+
+					<div class="form-group">
+						<h:outputLabel for="username" value="Username" />
+						<h:inputText id="username" label="Username"
+							styleClass="form-control"
+							style="#{!component.valid ? 'border-color: #a94442' : ''}"
+							value="#{loginCustomController.username}"
+							required="true" />
+					</div>
+
+					<div class="form-group">
+						<h:outputLabel for="password" value="Password" />
+						<h:inputSecret id="password" label="Password"
+							styleClass="form-control"
+							style="#{!component.valid ? 'border-color: #a94442' : ''}"
+							value="#{loginCustomController.password}"
+							required="true" />
+					</div>
+
+					<div class="form-group">
+						<h:commandButton styleClass="btn btn-primary"
+							value="Login" action="#{loginCustomController.onLogin}" />
+					</div>
+
+				</div>
+			</div>
+
+			<h3>Reminder</h3>
+			<p>
+				The requested resource is protected by the RequireLoginFilter (/auth-custom/*).<br />
+				The http request has been <strong>forwarded</strong> to this page by the filter, so as to retain the original url in the browser.
+			</p>
+
+		</div>
+
+	</ui:define>
+
+</ui:composition>

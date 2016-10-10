@@ -1,0 +1,39 @@
+public class IdentifiableEntity {
+
+    protected Long id;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) { return true; }
+        if (o == null || getClass() != o.getClass()) { return false; }
+
+        IdentifiableEntity identifiableEntity = (IdentifiableEntity) o;
+        return id != null ? id.equals(identifiableEntity.id) : super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : super.hashCode();
+    }
+}
+
+ID1 NULL      ID2 NULL      -> Direct this equals  -> True or False
+ID1 NULL      ID2 NOT NULL  -> Direct this equals  -> False
+ID1 NOT NULL  ID2 NULL      -> Indirect id equals  -> False
+ID1 NOT NULL  ID2 NOT NULL  -> Indirect id equals  -> True or False
+
+At the 1st case the equality is checked through direct reference comparison.
+As such the objects will have to actually be the one and the same.
+
+At the 2nd case the equality is checked through direct reference comparison.
+As such the objects will have to actually be the one and the same.
+Since the right side has different id they can't be the same, thus false.
+
+At the 3rd case the equality is checked through indirect id comparison.
+Since the right side id is different the outcome can only be false.
+
+At the 4th case the equality is checked through indirect id comparison.
+We could taint the ids from 2 different instances to produce a true outcome.
+
+However, it is not a problem since the properties of equivalence are preserved!
+http://www.mathwords.com/e/equivalence_properties_of_equality.htm

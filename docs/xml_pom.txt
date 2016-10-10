@@ -1,0 +1,132 @@
+http://swordsystems.com/2011/06/29/xerces-and-xml-api-dependency-hell/
+
+
+<dependency>
+	<!--
+		IMPLEMENTS
+		XSLT  : javax.xml.transform
+		XPath : javax.xml.xpath
+		http://xml.apache.org/xalan-j/
+	-->
+	<groupId>xalan</groupId>
+	<artifactId>xalan</artifactId>
+	<version>2.7.1</version>
+	<!--
+		LATEST VERSION: 2.7.1
+		http://search.maven.org/#artifactdetails|xalan|xalan|2.7.1|jar
+		xalan        serializer    2.7.1   EXACT
+		xerces       xercesImpl    2.9.0   optional CLOSE
+	-->
+</dependency>
+
+<dependency>
+	<groupId>xalan</groupId>
+	<artifactId>serializer</artifactId>
+	<version>2.7.1</version>
+	<!--
+		LATEST VERSION: 2.7.1
+		http://search.maven.org/#artifactdetails|xalan|serializer|2.7.1|jar
+		xml-apis     xml-apis      1.3.04  EXACT
+		xerces       xercesImpl    2.9.0   optional CLOSE
+	-->
+</dependency>
+
+<dependency>
+	<!--
+		IMPLEMENTS
+		DOM    : org.w3c.dom
+		SAX    : org.xml.sax
+		Schema : javax.xml.validation
+		http://xerces.apache.org/xerces2-j/
+	-->
+	<groupId>xerces</groupId>
+	<artifactId>xercesImpl</artifactId>
+	<version>2.9.1</version>
+	<!--
+		LATEST VERSION: 2.11.0
+		http://search.maven.org/#artifactdetails|xerces|xercesImpl|2.9.1|jar
+		xml-apis     xml-apis      1.3.04  EXACT
+		xml-resolver xml-resolver  1.2     optional
+	-->
+</dependency>
+
+<dependency>
+	<groupId>xml-apis</groupId>
+	<artifactId>xml-apis</artifactId>
+	<version>1.3.04</version>
+	<!--
+		LATEST VERSION: 1.4.01 ( NOTICE 2.0.x ARE OLD )
+		http://search.maven.org/#artifactdetails|xml-apis|xml-apis|1.3.04|jar
+	-->
+</dependency>
+
+
+<dependency>
+	<!--
+		XPath
+		ALTERNATIVE TO XALAN
+		http://jaxen.codehaus.org/
+	-->
+	<groupId>jaxen</groupId>
+	<artifactId>jaxen</artifactId>
+	<version>1.1.4</version>
+	<!--
+		LATEST VERSION: 1.1.4
+		http://search.maven.org/#artifactdetails|jaxen|jaxen|1.1.4|jar
+		dom4j        dom4j         1.6.1   optional
+		jdom         jdom          1.0     optional ???
+		xml-apis     xml-apis      1.3.02  provided CLOSE
+		xerces       xercesImpl    2.6.2   provided ???
+		xom          xom           1.0     optional
+	-->
+</dependency>
+
+
+<dependency>
+	<groupId>org.jdom</groupId>
+	<artifactId>jdom</artifactId>
+	<version>1.1</version>
+	<!--
+		LATEST VERSION: 2.0.2
+		http://search.maven.org/#artifactdetails|org.jdom|jdom|1.1|jar
+		xerces       xercesImpl    2.6.1   optional ???
+		xerces       xmlParserAPIs 2.6.1   optional
+		org.jdom     jaxen-core    1.0-FCS optional
+		org.jdom     jaxen-jdom    1.0-FCS optional
+		org.jdom     saxpath       1.0-FCS optional
+		xalan        xalan         2.5.D1  optional ???
+	-->
+</dependency>
+
+<dependency>
+	<groupId>org.jdom</groupId>
+	<artifactId>jaxen-core</artifactId>
+	<version>1.0-FCS</version>
+	<!--
+		LATEST VERSION: 1.0-FCS
+		jaxen-core from jdom 1.1 distribution
+		http://search.maven.org/#artifactdetails|org.jdom|jaxen-core|1.0-FCS|jar
+	-->
+</dependency>
+
+<dependency>
+	<groupId>org.jdom</groupId>
+	<artifactId>jaxen-jdom</artifactId>
+	<version>1.0-FCS</version>
+	<!--
+		LATEST VERSION: 1.0-FCS
+		jaxen-jdom from jdom 1.1 distribution
+		http://search.maven.org/#artifactdetails|org.jdom|jaxen-jdom|1.0-FCS|jar
+	-->
+</dependency>
+
+<dependency>
+	<groupId>org.jdom</groupId>
+	<artifactId>saxpath</artifactId>
+	<version>1.0-FCS</version>
+	<!--
+		LATEST VERSION: 1.0-FCS
+		saxpath from jdom 1.1 distribution
+		http://search.maven.org/#artifactdetails|org.jdom|saxpath|1.0-FCS|jar
+	-->
+</dependency>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:c="http://java.sun.com/jsp/jstl/core"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:cc="http://java.sun.com/jsf/composite"
+              xmlns:tl="http://java.sun.com/jsf/composite/tool">
+
+	<cc:interface>
+		<cc:attribute name="bean" required="true" />
+		<!-- The callback to the client of this component. -->
+		<!-- 1. We want to notify the client on the following occasions; some peculiarities exist: -->
+		<!-- a. When the "search customer" button is clicked, in order to let the client clear dependencies on the previously selected customer. -->
+		<!-- b. When the "select customer" link is clicked, in order to let the customer setup dependencies for the currently selected customer. -->
+		<!-- 2. We want to invoke the callback AFTER a customer selection (1b), i.e. an f:setPropertyActionListener, and since this is a method binding we cannot use an f:actionListener. -->
+		<!-- 3. We want to invoke the callback PROGRAMMATICALLY as well (1a), i.e. from within the "search customers" handler method. -->
+		<cc:attribute name="onCustomerSelect" method-signature="void action()" />
+		<cc:attribute name="render" default="" />
+	</cc:interface>
+
+	<cc:implementation>
+		<div id="#{cc.clientId}">
+
+			<!-- We bind the ui component to the controller bean in order to allow access to its attributes programmatically. -->
+			<c:set target="#{cc.attrs.bean}" property="uiComponent" value="#{cc}" />
+
+			<!-- Φόρμα Αναζήτησης -->
+
+			<div class="row">
+				<div class="col-md-6">
+
+					<div class="form-group">
+						<h:outputLabel for="customerId" styleClass="control-label col-md-4"
+							value="#{msg.customer_lookup_form_id}" />
+						<div class="col-md-8">
+							<h:inputText id="customerId" styleClass="form-control"
+								value="#{cc.attrs.bean.parameters.id}" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<h:outputLabel for="taxNumber" styleClass="control-label col-md-4"
+							value="#{msg.customer_lookup_form_tax_number}" />
+						<div class="col-md-8">
+							<h:inputText id="taxNumber" styleClass="form-control"
+								value="#{cc.attrs.bean.parameters.taxNumber}" />
+						</div>
+					</div>
+
+				</div>
+				<div class="col-md-6">
+
+					<div class="form-group">
+						<h:outputLabel for="firstName" styleClass="control-label col-md-4"
+							value="#{msg.customer_lookup_form_first_name}" />
+						<div class="col-md-8">
+							<h:inputText id="firstName" styleClass="form-control"
+								value="#{cc.attrs.bean.parameters.firstName}" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<h:outputLabel for="lastName" styleClass="control-label col-md-4"
+							value="#{msg.customer_lookup_form_last_name}" />
+						<div class="col-md-8">
+							<h:inputText id="lastName" styleClass="form-control"
+								value="#{cc.attrs.bean.parameters.lastName}" />
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row-fluid">
+				<div class="col-md-12" style="text-align: right;">
+
+					<h:commandButton id="searchCustomer" styleClass="btn"
+						value="#{msg.customer_lookup_form_search_customer}"
+						action="#{cc.attrs.bean.onSearchCustomerClick}">
+						<f:ajax execute="@form" render="customersContainer #{cc.attrs.render}" />
+					</h:commandButton>
+
+				</div>
+			</div>
+
+			<!-- Πελάτες -->
+	
+			<h:panelGroup id="customersContainer" layout="block">
+				<h:panelGroup rendered="#{!cc.attrs.bean.parameters.isEmpty()}">
+	
+					<div class="row">
+						<div class="col-md-12">
+							<h3><h:outputText value="#{msg.customer_lookup_customers}" /></h3>
+						</div>
+					</div>
+	
+					<div class="row">
+						<div class="col-md-12">
+							<h:panelGroup id="customersGrid" layout="block">
+
+								<h:outputStylesheet>
+									#customers\:identifier { width: 100px; }
+									#customers\:taxNumber  { width: 300px; }
+								</h:outputStylesheet>
+
+								<h:dataTable id="customersTable" styleClass="table table-bordered table-hover"
+									value="#{cc.attrs.bean.customers}" var="var">
+
+									<h:column id="selection" styleClass="selection">
+										<div class="recordKey" style="display: none;">#{var.key}</div>
+										<h:panelGroup rendered="#{cc.attrs.bean.isCustomerSelected(var)}">
+											<span class="btn btn-default btn-sm">
+												<i class="selected glyphicon glyphicon-ok" />
+											</span>
+										</h:panelGroup>
+										<h:panelGroup rendered="#{!cc.attrs.bean.isCustomerSelected(var)}">
+											<h:commandLink id="selectCustomer" styleClass="btn btn-default btn-sm"
+												title="#{msg.customer_lookup_customers_select_customer}"
+												action="#{cc.attrs.bean.onSelectedCustomerKeyChange}">
+												<f:setPropertyActionListener target="#{cc.attrs.bean.selectedCustomerKey}" value="#{var.key}" />
+												<f:ajax render=":#{cc.clientId}:customersContainer #{cc.attrs.render}" />
+												<i class="glyphicon glyphicon-user" />
+											</h:commandLink>
+										</h:panelGroup>
+									</h:column>
+
+									<h:column id="identifier" styleClass="identifier">
+										<f:facet name="header">#{msg.customer_lookup_customers_id}</f:facet>
+										<h:outputText value="#{var.data.id}" />
+									</h:column>
+
+									<h:column id="fullName" styleClass="fullName">
+										<f:facet name="header">#{msg.customer_lookup_customers_full_name}</f:facet>
+										<h:outputText value="#{var.data.firstName} #{var.data.lastName}" />
+									</h:column>
+
+									<h:column id="taxNumber" styleClass="taxNumber">
+										<f:facet name="header">#{msg.customer_lookup_customers_tax_number}</f:facet>
+										<h:outputText value="#{var.data.taxNumber}" />
+									</h:column>
+
+								</h:dataTable>
+
+								<h:outputScript>
+									$(function() {
+										initGrid({ gridId: '#{cc.clientId}:customersGrid' });
+									});
+								</h:outputScript>
+
+							</h:panelGroup>
+						</div>
+					</div>
+
+				</h:panelGroup>
+			</h:panelGroup>
+
+		</div>
+	</cc:implementation>
+
+</ui:component>

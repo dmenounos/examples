@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SVHC>
+
+	<RoundCase name="R1">
+		<Folder name="01 General Documents">
+			<Document name="doc_r1_01" />
+			<Document name="doc_r1_02" />
+		</Folder>
+		<Folder name="02 Candidate List Preparation">
+			<Folder name="01 Candidate List">
+				<Document name="SVHC_ED_DECISION" />
+			</Folder>
+			<Document name="doc_r1_03" />
+			<Document name="doc_r1_04" />
+		</Folder>
+		<Folder name="03 Comittee Documents">
+			<Document name="doc_r1_05" />
+			<Document name="doc_r1_06" />
+		</Folder>
+		<SubstanceCase name="S1">
+			<Folder name="01 RoI and RMO">
+				<Document name="doc_s1_07" />
+				<Document name="doc_s1_08" />
+			</Folder>
+			<Folder name="02 Dossier Preparation">
+				<Document name="doc_s1_09" />
+				<Document name="doc_s1_10" />
+			</Folder>
+			<Folder name="03 Dossier Reception and Accordance check">
+				<Document name="doc_s1_11" />
+				<Document name="doc_s1_12" />
+			</Folder>
+			<Folder name="04 SVHC Identification">
+				<Document name="doc_s1_13" />
+				<Document name="doc_s1_14" />
+				<!-- BINDER SET 1 (COMPLETE) -->
+				<Document name="SVHC_SUPDOC_MSCA_FINAL" />
+				<Document name="SVHC_RCOM_Final_res" />
+				<Document name="SVHC_RCOM_Final_int" />
+				<Document name="MSC04_FINAL" />
+				<!-- BINDER SET 2 (COMPLETE) -->
+				<Document name="SVHC_SUPDOC_MSCA" />
+				<Document name="SVHC_RCOM_MSCA_res" />
+			</Folder>
+			<Folder name="05 Correspondence and Notes">
+				<Document name="doc_s1_15" />
+				<Document name="doc_s1_16" />
+			</Folder>
+			<Folder name="Calendar">
+				<Folder name="SubFolder">
+					<Document name="doc_s1_cal_1" />
+					<Document name="doc_s1_cal_2" />
+				</Folder>
+			</Folder>
+			<Folder name="Comments">
+				<Folder name="SubFolder">
+					<Document name="doc_s1_com_1" />
+					<Document name="doc_s1_com_2" />
+				</Folder>
+			</Folder>
+			<Folder name="RCOM">
+				<Folder name="Public">
+					<Document name="doc_s1_rpb_1" />
+					<Document name="doc_s1_rpb_2" />
+				</Folder>
+				<Folder name="Confidential">
+					<Document name="doc_s1_rcf_1" />
+					<Document name="doc_s1_rcf_2" />
+				</Folder>
+			</Folder>
+		</SubstanceCase>
+	</RoundCase>
+
+	<RoundCase name="R2">
+		<Folder name="01 General Documents">
+			<Document name="doc_r2_17" />
+			<Document name="doc_r2_18" />
+		</Folder>
+		<Folder name="02 Candidate List Preparation">
+			<Folder name="01 Candidate List">
+				<Document name="SVHC_ED_DECISION" />
+			</Folder>
+			<Document name="doc_r2_19" />
+			<Document name="doc_r2_20" />
+		</Folder>
+		<Folder name="03 Comittee Documents">
+			<Document name="doc_r2_21" />
+			<Document name="doc_r2_22" />
+		</Folder>
+		<SubstanceCase name="S2">
+			<Folder name="01 RoI and RMO">
+				<Document name="doc_s2_23" />
+				<Document name="doc_s2_24" />
+			</Folder>
+			<Folder name="02 Dossier Preparation">
+				<Document name="doc_s2_25" />
+				<Document name="doc_s2_26" />
+			</Folder>
+			<Folder name="03 Dossier Reception and Accordance check">
+				<Document name="doc_s2_27" />
+				<Document name="doc_s2_28" />
+			</Folder>
+			<Folder name="04 SVHC Identification">
+				<Document name="doc_s2_29" />
+				<Document name="doc_s2_30" />
+				<!-- BINDER SET 1 (INCOMPLETE) -->
+				<Document name="SVHC_SUPDOC_MSCA_FINAL" />
+				<Document name="SVHC_RCOM_Final_res" />
+				<!-- BINDER SET 2 (COMPLETE) -->
+				<Document name="SVHC_SUPDOC_MSCA" />
+				<Document name="SVHC_RCOM_MSCA_res" />
+			</Folder>
+			<Folder name="05 Correspondence and Notes">
+				<Document name="doc_s1_31" />
+				<Document name="doc_s1_32" />
+			</Folder>
+			<Folder name="Calendar">
+				<Folder name="SubFolder">
+					<Document name="doc_s2_cal_1" />
+					<Document name="doc_s2_cal_2" />
+				</Folder>
+			</Folder>
+			<Folder name="Comments">
+				<Folder name="SubFolder">
+					<Document name="doc_s2_com_1" />
+					<Document name="doc_s2_com_2" />
+				</Folder>
+			</Folder>
+			<Folder name="RCOM">
+				<Folder name="Public">
+					<Document name="doc_s2_rpb_1" />
+					<Document name="doc_s2_rpb_2" />
+				</Folder>
+				<Folder name="Confidential">
+					<Document name="doc_s2_rcf_1" />
+					<Document name="doc_s2_rcf_2" />
+				</Folder>
+			</Folder>
+		</SubstanceCase>
+	</RoundCase>
+
+</SVHC>

@@ -1,0 +1,19 @@
+27/01/2016
+==========
+
+METAFORA + ALLAGES SE DOCUMENT SERVLET
+examples\examples-view\src\main\java\test\view\office\DocumentServlet.java
+
+ALLAGES SE DOCUMENT JSP
+examples\examples-view\src\main\webapp\office\index.jsp
+
+15/02/2016
+==========
+
+NEO HELPER FILE GIA TOMCAT ANTISTOIXO TOU JBOSS
+examples\docs\tomcat
+
+22/02/2016
+==========
+
+ALLAGES ALL OVER THE PLACE!

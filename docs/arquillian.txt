@@ -1,0 +1,5 @@
+Arquillian is a container-oriented integration and functional test platform 
+that support different types of containers where our beans life cycle are 
+handled. It is focused to make integration tests just as easy as JUnit tests. 
+To mention a couple of containers supported out of the box, JBoss, Jetty, 
+Tomcat and WebSphere.

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+	<!-- Even though the project is renamed as "examples" -->
+	<!-- the codes retain the original "test" naming. -->
+	<security-domain>test</security-domain>
+</jboss-web>

@@ -1,0 +1,31 @@
+Using Form-Based Login in JavaServer Faces Web Applications
+--------------------------------------------------------------------------------
+http://docs.oracle.com/javaee/6/tutorial/doc/glxce.html
+================================================================================
+
+A managed bean can authenticate users of a JavaServer Faces application, which 
+allows regular Facelets form tags to be used instead of a mix of standard HTML 
+and Facelets tags. In this case, the managed bean defines login and logout 
+methods, and Facelets forms call these methods in the action attribute. The 
+managed bean’s methods call the javax.servlet.http.HttpServletRequest.login and 
+HttpServletRequest.logout methods to manage user authentication.
+
+
+Using the JDBC Realm for User Authentication
+--------------------------------------------------------------------------------
+http://docs.oracle.com/javaee/6/tutorial/doc/glxgo.html
+================================================================================
+
+An authentication realm, sometimes called a security policy domain or security 
+domain, is a scope over which an application server defines and enforces a 
+common security policy. A realm contains a collection of users, who may or may 
+not be assigned to a group. GlassFish Server comes preconfigured with the file, 
+certificate, and administration realms. An administrator can also set up LDAP, 
+JDBC, digest, or custom realms.
+
+An application can specify in its deployment descriptor which realm to use. If 
+the application does not specify a realm, GlassFish Server uses its default 
+realm, the file realm. If an application specifies that a JDBC realm is to be 
+used for user authentication,GlassFish Server will retrieve user credentials 
+from a database. The application server uses the database information and the 
+enabled JDBC realm option in the configuration file.

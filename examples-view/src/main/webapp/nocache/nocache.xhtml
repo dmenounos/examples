@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+		<title>Back/Forward Cache Test</title>
+	</h:head>
+
+	<h:body>
+		<p><a href="nocache-dest.xhtml">Go to another page</a></p>
+		<p><a href="#" onclick="return modifyDOM()">Modify the DOM</a></p>
+		<p><a href="#" onclick="return addUnload()">Add onunload handler</a></p>
+		<p><a href="#" onclick="return addBeforeUnload()">Add onbeforeunload handler</a></p>
+
+		<ul id="ul">
+		<li>This page was sent with headers telling the browser not to cache it.</li>
+		</ul>
+
+		<h:outputText value="#{session.lastAccessedTime}">
+			<f:convertDateTime pattern="d MMM yyyy HH:mm:ss" type="date" />
+		</h:outputText>
+
+		<h:form>
+			<div class="form-group">
+				<h:outputLabel for="date" value="date" />
+				<h:inputText id="date" styleClass="form-control"
+					value="#{session.lastAccessedTime}"
+					required="false" disabled="true" />
+				<h:message for="date" />
+			</div>
+			<div class="form-group">
+				<h:commandButton value="Submit" />
+			</div>
+		</h:form>
+
+		<script type="text/javascript">
+			function addText(text) {
+				var ul = document.getElementById('ul');
+				var li = document.createElement('li');
+				li.appendChild(document.createTextNode(text));
+				ul.appendChild(li);
+			}
+			
+			function callback() {
+			}
+			
+			function modifyDOM() {
+				addText("Here is a new list item!");
+				return false;
+			}
+			
+			function addUnload() {
+				window.onunload = callback;
+				addText("onunload handler installed");
+				return false;
+			}
+			
+			function addBeforeUnload() {
+				window.onunload = callback;
+				addText("onbeforeunload handler installed");
+				return false;
+			}
+			/*
+			window.onload = function() {
+				alert('window loaded');
+			}
+			*/
+		</script>
+	</h:body>
+
+</html>

@@ -1,0 +1,33 @@
+Find all the other records from the database.
+---------------------------------------------
+
+1. When we have a transient entity the id parameter will be null.
+The NULL IS NULL will evaluate to TRUE for ALL records (and id <> NULL becomes irrelevant).
+
+	SELECT ... FROM ... WHERE (NULL IS NULL OR id <> NULL) AND ... 
+
+2. When we have a persistent entity the id parameter will be non-null, e.g. 1234.
+The 1234 IS NULL will evaluate to FALSE for ALL records (now id <> 1234 becomes relevant).
+
+	SELECT ... FROM ... WHERE (1234 IS NULL OR id <> 1234) AND ... 
+
+
+Find either a persistent record or all the other records.
+---------------------------------------------------------
+
+1. When we have a transient entity the id parameter will be null.
+The NULL IS NULL will evaluate to TRUE for ALL records (and id = NULL becomes irrelevant).
+
+2. When we have a persistent entity the id parameter will be non-null, e.g. 1234.
+The 1234 IS NULL will evaluate to FALSE for ALL records (now id = 1234 becomes relevant).
+
+CREATE TABLE foobar (id INT, title VARCHAR(255));
+
+INSERT INTO foobar (id, title) VALUES (1234, 'title 1');
+INSERT INTO foobar (id, title) VALUES (2345, 'title 2');
+INSERT INTO foobar (id, title) VALUES (3456, 'title 3');
+INSERT INTO foobar (id, title) VALUES (null, 'title 4');
+INSERT INTO foobar (id, title) VALUES (null, 'title 5');
+
+SELECT * FROM foobar WHERE ( NULL IS NULL or id = null );
+SELECT * FROM foobar WHERE ( 1234 IS NULL OR id = 1234 );
