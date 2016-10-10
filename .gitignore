@@ -1,4 +1,16 @@
-# Created by https://www.gitignore.io/api/java,eclipse
+# Created by https://www.gitignore.io/api/java,maven,eclipse
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
 
 ### Eclipse ###
 
@@ -60,7 +72,7 @@ local.properties
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# Package Files
 *.jar
 *.war
 *.ear
