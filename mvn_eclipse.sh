@@ -2,8 +2,7 @@
 
 MODULE="." # module directory (default is parent)
 CLEAN=""   # clean target (default is empty, i.e. don't clean)
-ATYPE=""                             # default arquillian adapter
-# ATYPE="-P arquillian-jboss-remote" # default arquillian adapter
+ATYPE=""   # default arquillian adapter
 
 while getopts "cm:a:" opt; do
 	case $opt in

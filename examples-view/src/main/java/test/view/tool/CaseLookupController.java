@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,9 +15,11 @@ import org.slf4j.LoggerFactory;
 import test.core.model.Case;
 import test.core.model.Customer;
 import test.core.service.CaseService;
+import test.view.core.ViewScoped;
+import test.view.tool.CustomerLookupComponent.CustomerLookupParameters;
 import test.view.util.ViewModel;
 
-@SessionScoped
+@ViewScoped
 @Named("caseLookup")
 public class CaseLookupController implements Serializable {
 
@@ -183,5 +184,10 @@ public class CaseLookupController implements Serializable {
 		public CaseInfo(Case data) {
 			setData(data);
 		}
+	}
+
+	public static class CaseLookupParameters extends CustomerLookupParameters {
+
+		private static final long serialVersionUID = 1L;
 	}
 }

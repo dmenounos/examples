@@ -22,9 +22,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<version.maven-compiler-plugin>3.3</version.maven-compiler-plugin>
-        <version.maven-jar-plugin>2.6</version.maven-jar-plugin>
-        <version.maven-war-plugin>2.6</version.maven-war-plugin>
-        <version.maven-ear-plugin>2.10</version.maven-ear-plugin>
+		<version.maven-jar-plugin>2.6</version.maven-jar-plugin>
+		<version.maven-war-plugin>2.6</version.maven-war-plugin>
+		<version.maven-ear-plugin>2.10</version.maven-ear-plugin>
 		<version.maven-eclipse-plugin>2.10</version.maven-eclipse-plugin>
 
 		<picketbox.version>4.1.1.Final</picketbox.version>

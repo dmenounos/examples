@@ -4,7 +4,7 @@ http://www.onjava.com/pub/a/onjava/2002/06/12/form.html
 ================================================================================
 
 There are two major components of Web application security: authentication and 
-authorization. J2EE-based Web containers offer three types of authentication 
+authorization. Java EE-based Web containers offer three types of authentication 
 mechanisms: basic, form-based, and mutual authentication. Most Web applications 
 use the form-based authentication mechanism, since it allows applications to 
 customize the authentication user interface. Web containers implement 

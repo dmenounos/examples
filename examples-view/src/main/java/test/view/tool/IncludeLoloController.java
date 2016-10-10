@@ -29,7 +29,7 @@ public class IncludeLoloController implements Serializable {
 	}
 
 	public void preRenderView() throws Exception {
-		if (!initialized && IncludeController.INCLUDE_LOLO.equals(parentBean.getIncludeFile())) {
+		if (IncludeController.INCLUDE_LOLO.equals(parentBean.getIncludeFile()) && !initialized) {
 			// Initialize on-demand and only once.
 			initialized = true;
 			initialize();

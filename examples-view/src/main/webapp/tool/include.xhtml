@@ -19,6 +19,8 @@
 			<div class="row">
 				<div class="col-md-8">
 
+					<!-- Include file selection -->
+
 					<h:panelGrid columns="2">
 						<h:outputLabel for="includeFile"
 							value="#{msg.include_main_select_include_file}" />
@@ -34,6 +36,8 @@
 						<p><strong>Selected Value:</strong> #{includeController.includeFile}</p>
 					</h:panelGroup>
 
+					<!-- Separate includes with c:if_test value -->
+
 					<h:panelGroup id="includeWithCIf" styleClass="panel panel-default" layout="block">
 						<div class="panel-heading">
 							<strong>Include with:</strong> &lt;c:if test="..."&gt;
@@ -47,6 +51,8 @@
 							</c:if>
 						</div>
 					</h:panelGroup>
+
+					<!-- Separate includes with h:panelGroup_rendered value -->
 
 					<h:panelGroup id="includeWithPanel" styleClass="panel panel-default" layout="block">
 						<div class="panel-heading">
@@ -64,6 +70,8 @@
 
 				</div>
 				<div class="col-md-4">
+
+					<!-- Side Notes -->
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
