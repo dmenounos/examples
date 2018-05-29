@@ -15,11 +15,11 @@
 
 	<h:body>
 		<h:form id="menuForm">
-			<!-- external include -->
+			<!-- include external file -->
 			<ui:include src="navbar.xhtml" />
 		</h:form>
 		<h:form id="mainForm">
-			<!-- inheritance include -->
+			<!-- include child content -->
 			<ui:insert name="content" />
 		</h:form>
 		<script src="#{request.contextPath}/resources/jquery/jquery.min.js"></script>

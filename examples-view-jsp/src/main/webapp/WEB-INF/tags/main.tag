@@ -11,8 +11,9 @@
 	</head>
 
 	<body>
-		<!-- external include -->
+		<!-- include external file -->
 		<jsp:include page="/WEB-INF/tags/navbar.jsp" />
+		<!-- include child content -->
 		<jsp:doBody />
 		<script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
