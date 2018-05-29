@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/main.xhtml">
+
+	<ui:define name="content">
+
+		<div class="container">
+			<p>This page is protected through standard JEE authentication / authorization and a custom server login module.</p>
+			<ul>
+				<li>The upside is that the application server is aware of the logged user.</li>
+				<li>The downside is that the code is dependent on the application server.</li>
+			</ul>
+			<p>The implementation is comprised mainly of the following:</p>
+			<ul>
+				<li>web.xml &lt;login-config&gt; - declares the login form file</li>
+				<li>web.xml &lt;security-constraint&gt; - declares the protected resources</li>
+				<li>web.xml &lt;security-role&gt; - declares the application roles used for authorization</li>
+				<li>jboss-web.xml &lt;security-domain&gt; - associates the application with a configured jboss security domain</li>
+				<li>test.view.auth.jee.UserServiceJBossModule - the adapter module that is called from the server upon an authentication request; must be registered as a jboss security domain (standalone.xml)</li>
+				<li>test.core.auth.UserService(Bean) - the actual application specific authentication logic</li>
+			</ul>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

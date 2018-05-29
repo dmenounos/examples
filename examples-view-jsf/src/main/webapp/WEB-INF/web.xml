@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+
+	<filter>
+		<filter-name>WebContextFilter</filter-name>
+		<filter-class>test.view.core.WebContextFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>WebContextFilter</filter-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>FacesServlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FacesServlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<!-- AUTHENTICATION WITH CUSTOM FILTER -->
+
+	<filter>
+		<filter-name>RequireLoginFilter</filter-name>
+		<filter-class>test.view.auth.custom.RequireLoginFilter</filter-class>
+		<init-param>
+			<param-name>loginForm</param-name>
+			<param-value>/login-custom.xhtml</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>RequireLoginFilter</filter-name>
+		<url-pattern>/auth-custom/*</url-pattern>
+	</filter-mapping>
+
+	<!-- AUTHENTICATION WITH STANDARD JEE -->
+
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login-jee.xhtml</form-login-page>
+			<form-error-page>/login-jee.xhtml?auth-error=1</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Protected Resources</web-resource-name>
+			<url-pattern>/auth-jee/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>USER</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Forbidden Resources</web-resource-name>
+			<url-pattern>/*</url-pattern>
+			<http-method>DELETE</http-method>
+			<http-method>TRACE</http-method>
+		</web-resource-collection>
+		<auth-constraint />
+	</security-constraint>
+
+	<security-role>
+		<role-name>USER</role-name>
+	</security-role>
+
+	<welcome-file-list>
+		<welcome-file>index.xhtml</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/close.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/close.xhtml</location>
+	</error-page>
+
+	<!--
+	<error-page>
+		<error-code>403</error-code>
+		<location>/close.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/close.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/close.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>503</error-code>
+		<location>/close.xhtml</location>
+	</error-page>
+	-->
+
+</web-app>
